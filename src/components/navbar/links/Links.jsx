@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import menu from "../../../../public/menu.png";
 import Image from "next/image";
+import { handleLogout } from "@/lib/action";
 
-const Links = () => {
+const Links = ({ session }) => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const links = [
@@ -26,8 +27,8 @@ const Links = () => {
       path: "/blog",
     },
   ];
-  const session = true;
-  const isAdmin = true;
+
+  // const isAdmin = true;
 
   return (
     <div>
@@ -44,9 +45,9 @@ const Links = () => {
               {link.title}
             </Link>
           ))}
-          {session ? (
+          {session?.user ? (
             <>
-              {isAdmin && (
+              {session.user?.isAdmin && (
                 <Link
                   href="/admin"
                   className={`min-w-[100px] p-[10px] rounded-[20px] font-medium text-center
@@ -56,9 +57,11 @@ const Links = () => {
                   Admin
                 </Link>
               )}
-              <button className="p-[10px] cursor-pointer font-bold">
-                Logout
-              </button>
+              <form action={handleLogout}>
+                <button className="p-[10px] cursor-pointer font-bold">
+                  Logout
+                </button>
+              </form>
             </>
           ) : (
             <Link

@@ -2,6 +2,11 @@ import React from "react";
 import contact from "../../../public/contact.png";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Contact Page",
+  description: "Contact Description",
+};
+
 const ContactPage = () => {
   return (
     <div className="py-5 md:py-10 lg:py-20">

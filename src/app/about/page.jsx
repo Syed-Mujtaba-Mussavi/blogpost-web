@@ -1,6 +1,11 @@
 import Image from "next/image";
 import aboutpic from "../../../public/about.png";
 
+export const metadata = {
+  title: "About Page",
+  description: "About Description",
+};
+
 const data = [
   {
     id: 1,
